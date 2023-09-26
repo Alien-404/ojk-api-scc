@@ -3,7 +3,7 @@ function queryPrep(signer, funcQuery, args) {
         headers: {
             type: "SendTransaction",
             signer: signer,
-            channel: "ojk",
+            channel: "default-channel",
             chaincode: "ojk_chaincode_js"
         },
         func: funcQuery,

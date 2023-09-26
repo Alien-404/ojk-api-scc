@@ -94,7 +94,15 @@ module.exports = {
                 },
             });
         } catch (error) {
-            next(error);
+            if (error.response.data.error = 'Transaction processing for endorser [k0fhskrb5y.k0i6khldkt.kaleido.network:40060]: Chaincode status Code: (500) UNKNOWN. Description: The T74RmLvbKfgaEiP5Qa does not exist') {
+                next({
+                    statusCode: 404,
+                    message: error.response.data.error
+                });
+            } else {
+                next(error);
+            }
+
         }
     },
 
@@ -130,7 +138,7 @@ module.exports = {
                 headers: {
                     type: "SendTransaction",
                     signer: user.email,
-                    channel: "ojk",
+                    channel: "default-channel",
                     chaincode: "ojk_chaincode_js"
                 },
                 func: "createAsset",
