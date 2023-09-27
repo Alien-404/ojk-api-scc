@@ -37,13 +37,13 @@ module.exports = {
             const user = req.user;
             const certificates = await axiosInstance.post(`/query`, queryPrep(user.email, 'GetAllAssets', []));
 
-            const userCertificate = certificates.data.result.filter(obj => obj.accountID === user.accountID)
+            const userCertificate = certificates.data.result.filter(obj => obj.accountID === user.accountId);
 
             return res.status(200).json({
                 status: true,
                 message: 'success!',
                 data: {
-                    certificates: userCertificate,
+                    certificatess: userCertificate,
                 },
             });
         } catch (error) {
